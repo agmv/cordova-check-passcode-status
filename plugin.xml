@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="net.qdkf.checkPasscode" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>checkPasscode</name>
+
+    <description>It is used to detect whether the phone is open locks</description>
+    <keywords>passcode, lock, lock status</keywords>
+
+    <js-module name="checkPasscode" src="www/checkPasscode.js">
+        <clobbers target="cordova.plugins.checkPasscode"/>
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="checkPasscode">
+                <param name="ios-package" value="checkPasscode"/>
+            </feature>
+        </config-file>
+        <framework src="Security.framework" weak="true"/>
+        <source-file src="src/ios/checkPasscode.m"/>
+        <source-file src="src/ios/UIDevice+PasscodeStatus.h"/>
+        <source-file src="src/ios/UIDevice+PasscodeStatus.m"/>
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="checkPasscode">
+                <param name="android-package" value="net.qdkf.checkPasscode.checkPasscode"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/checkPasscode.java" target-dir="src/net/qdkf/checkPasscode/"/>
+    </platform>
+</plugin>
